@@ -1,35 +1,87 @@
 var bombs = [];
-
-
+var difficoltà = prompt("scegli difficoltà 0 (facile), 1 (media), 2 (difficile)")
+var zero = 100;
+var uno = 80;
+var due = 50;
 //genero numeri random tutti diferenti del pc
-while(bombs.length < 16){
 
-  var rng = Math.floor(Math.random() * 100) + 1;
-  if(bombs.indexOf(rng) === -1) bombs.push(rng);
+function bombsGenerator (max){
+
+  while(bombs.length < 16){
+
+    var rng = Math.floor(Math.random() * (max - 1)) + 1;
+    if(bombs.indexOf(rng) === -1) bombs.push(rng);
+
+  }
 
 }
-console.log(bombs);
+// while(bombs.length < 16){
+//
+//   var rng = Math.floor(Math.random() * 100) + 1;
+//   if(bombs.indexOf(rng) === -1) bombs.push(rng);
+//
+// }
+
 //faccio scegliere numero
-function game() {
+function game(number) {
 
   var playerNumber;
   var i = 0;
 
   do {
 
-  playerNumber = parseInt( prompt("dimmi un numero da 1 a 100") );
-  i ++;
+    playerNumber = parseInt( prompt("dimmi un numero da 1 a " + number) );
+    i ++;
 
-} while (!bombs.includes(playerNumber) && i < 84 && !isNaN(playerNumber));
+  } while (!bombs.includes(playerNumber) && i < (number - 16) && !isNaN(playerNumber));
+
+  console.log(i);
 
   if ( bombs.includes(playerNumber) ) {
-    alert("hai perso");
-  } else if (i = 83) {
+
+    return true;
+
+  }
+
+  return false;
+
+}
+// stampo vittoria o sconfitta
+// if (game()) {
+//    alert("hai perso");
+// } else {
+//   alert("hai vinto")
+// }
+
+if (difficoltà == "0"){
+
+  bombsGenerator(zero);
+  console.log(bombs);
+
+  if (game(zero)) {
+     alert("hai perso");
+  } else {
+    alert("hai vinto")
+  }
+
+} else if (difficoltà == "1") {
+
+  bombsGenerator(uno);
+  console.log(bombs);
+  if (game(uno)) {
+     alert("hai perso");
+  } else {
+    alert("hai vinto")
+  }
+
+} else {
+
+  bombsGenerator(due);
+  console.log(bombs);
+  if (game(due)) {
+     alert("hai perso");
+  } else {
     alert("hai vinto")
   }
 
 }
-game();
-// if (game()) {
-//   alert("hai perso");
-// }
