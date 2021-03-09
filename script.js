@@ -27,17 +27,35 @@ function game(number) {
 
   var playerNumber;
   var i = 0;
+  var playerNumbers = [];
 
   do {
 
-    playerNumber = parseInt( prompt("dimmi un numero da 1 a " + number) );
-    i ++;
+    do {
+
+      playerNumber = parseInt( prompt("dimmi un numero da 1 a " + number) );
+
+    } while (isNaN(playerNumber));
+
+
+
+    if ( playerNumbers.includes(playerNumber) ){
+
+      alert("non ripetere i numeri");
+      i --;
+
+    } else {
+
+      playerNumbers.push(playerNumber);
+      i++;
+
+    }
 
   } while (!bombs.includes(playerNumber) && i < (number - 16) && !isNaN(playerNumber));
 
   console.log(i);
-
-  if ( bombs.includes(playerNumber) ) {
+  console.log(bombs.includes(playerNumber));
+  if ( bombs.includes(playerNumber) || isNaN(playerNumber) ) {
 
     return true;
 
@@ -46,6 +64,7 @@ function game(number) {
   return false;
 
 }
+
 // stampo vittoria o sconfitta
 // if (game()) {
 //    alert("hai perso");
