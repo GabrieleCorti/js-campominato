@@ -20,13 +20,16 @@ function game() {
   playerNumber = parseInt( prompt("dimmi un numero da 1 a 100") );
   i ++;
 
-  } while (!bombs.includes(playerNumber) && i < 84 && !isNaN(playerNumber));
+} while (!bombs.includes(playerNumber) && i < 84 && !isNaN(playerNumber));
 
-  console.log(i);
-  return true;
+  if ( bombs.includes(playerNumber) ) {
+    alert("hai perso");
+  } else if (i = 83) {
+    alert("hai vinto")
+  }
 
 }
-
-if (game()) {
-  alert("hai perso");
-} 
+game();
+// if (game()) {
+//   alert("hai perso");
+// }
