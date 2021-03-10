@@ -10,7 +10,7 @@ function bombsGenerator (max){
   while(bombs.length < 16){
 
     var rng = Math.floor(Math.random() * (max - 1)) + 1;
-    if(bombs.indexOf(rng) === -1) bombs.push(rng);
+    if(bombs.indexOf(rng) === -1) {bombs.push(rng);}
 
   }
 
@@ -23,11 +23,28 @@ function bombsGenerator (max){
 // }
 
 //faccio scegliere numero
-function game(number) {
 
   var playerNumber;
   var i = 0;
   var playerNumbers = [];
+  var number;
+
+  if (difficoltà == "0"){
+
+    number = zero;
+    bombsGenerator(zero);
+
+  } else if (difficoltà == "1") {
+
+    number = uno;
+    bombsGenerator(uno);
+
+  } else {
+
+    number = due;
+    bombsGenerator(due);
+
+  }
 
   do {
 
@@ -36,8 +53,6 @@ function game(number) {
       playerNumber = parseInt( prompt("dimmi un numero da 1 a " + number) );
 
     } while (isNaN(playerNumber));
-
-
 
     if ( playerNumbers.includes(playerNumber) ){
 
@@ -54,16 +69,16 @@ function game(number) {
   } while (!bombs.includes(playerNumber) && i < (number - 16) && !isNaN(playerNumber));
 
   console.log(i);
-  console.log(bombs.includes(playerNumber));
+
   if ( bombs.includes(playerNumber) || isNaN(playerNumber) ) {
 
-    return true;
+    alert("Hai perso")
 
+  } else {
+
+    alert("Hai vinto")
   }
 
-  return false;
-
-}
 
 // stampo vittoria o sconfitta
 // if (game()) {
@@ -71,36 +86,3 @@ function game(number) {
 // } else {
 //   alert("hai vinto")
 // }
-
-if (difficoltà == "0"){
-
-  bombsGenerator(zero);
-  console.log(bombs);
-
-  if (game(zero)) {
-     alert("hai perso");
-  } else {
-    alert("hai vinto")
-  }
-
-} else if (difficoltà == "1") {
-
-  bombsGenerator(uno);
-  console.log(bombs);
-  if (game(uno)) {
-     alert("hai perso");
-  } else {
-    alert("hai vinto")
-  }
-
-} else {
-
-  bombsGenerator(due);
-  console.log(bombs);
-  if (game(due)) {
-     alert("hai perso");
-  } else {
-    alert("hai vinto")
-  }
-
-}
